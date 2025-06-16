@@ -1,0 +1,12 @@
+# ignoring python bytecode
+__pycache__/
+*.pyc
+
+# ignore instance directory
+instance/
+
+# ignore config files
+config.json
+
+# custom ignore
+*-ignore.*

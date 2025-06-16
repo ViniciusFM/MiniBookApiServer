@@ -1,0 +1,7 @@
+{
+    "SQLALCHEMY_DATABASE_URI": "sqlite:///minibookapi.db",
+    "TOKEN": "python -c 'import secrets; print(secrets.token_hex(32))'",
+    "TOKEN_ADMIN": "python -c 'import secrets; print(secrets.token_hex(32))'",
+    "PIX_NAME": "pix code fullname",
+    "PIX_KEY": "pix key"
+}
