@@ -11,7 +11,7 @@ collection:
     meta:
       id: req_3dac1e2af67248838e8bf4b9c2a9f841
       created: 1749924676564
-      modified: 1750030550058
+      modified: 1750186377701
       isPrivate: false
       description: ""
       sortKey: -1749974342848.5
@@ -20,8 +20,8 @@ collection:
       mimeType: application/json
       text: >-
         {
-        	"title": "Test 3",
-        	"author": "Test Author 3",
+        	"title": "Test 2",
+        	"author": "Test Author 2",
         	"price": 5000,
         	"unities": 10,
         	"year": 2025,
@@ -130,7 +130,7 @@ collection:
     meta:
       id: req_338e319c6f684e37b9a9d21c0dc41ed1
       created: 1750016196703
-      modified: 1750030550054
+      modified: 1750186377701
       isPrivate: false
       description: ""
       sortKey: -1750016460627
@@ -139,7 +139,7 @@ collection:
       mimeType: application/json
       text: |-
         {
-        	"sale_uuid": "352d309c1d52496589535313b09c4a82"
+        	"sale_uuid": "32e318009f744ae199d31b1c386dd1a0"
         }
     headers:
       - name: Content-Type
@@ -162,7 +162,7 @@ collection:
     meta:
       id: req_efe7931efcd94ee3a12a08f6141b0098
       created: 1750016460527
-      modified: 1750030550065
+      modified: 1750186377701
       isPrivate: false
       description: ""
       sortKey: -1750016460527
@@ -171,7 +171,7 @@ collection:
       mimeType: application/json
       text: |-
         {
-        	"sale_uuid": "352d309c1d52496589535313b09c4a82"
+        	"sale_uuid": "647d159932784ceba0aa10b804fca8e5"
         }
     headers:
       - name: Content-Type
@@ -224,11 +224,11 @@ environments:
   meta:
     id: env_c086891d18cfa5f2b516b1e03942ec6afb8df2d6
     created: 1749924640065
-    modified: 1750030550049
+    modified: 1750186377701
     isPrivate: false
   data:
-    api_token: f6e1f1f5b1a6d66f35ef97ed1ae511fbd5a5c43094316b416c49f74c6f85253c
-    api_token_admin: f6e1f1f5b1a6d66f35ef97ed1ae511fbd5a5c43094316b416c49f74c6f85253c
+    api_token: 4ee82c61a8844f9b24ad01c871f3172df9037568f0f373e1e0d8ccfb42aeb6cf
+    api_token_admin: 3a4c98a120f97b567e3b320054a79aa7284bc20ab4e534397f94247ca5d23eb4
     app_url: http://localhost:5000
   subEnvironments:
     - name: PythonAnywhere
