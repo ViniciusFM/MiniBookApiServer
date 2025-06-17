@@ -285,12 +285,12 @@ Exceptions:
 
 Veja o [*Schema* do Banco de Dados](#schema-do-bando-de-dados) para compreender os campos.
 
-> OBS: `book_sales` é construído a partir da relação **Book-Sale**.
+> OBS: `books_sales` é construído a partir da relação **Book-Sale**.
 
 ```json
 [
 	{
-		"book_sales": [
+		"books_sales": [
 			{
 				"book_id": 1,
 				"book_price": 5000,
@@ -347,13 +347,13 @@ A entrada consiste em um `JSON` o par chave-valor representa, respectivamente, o
 
 ### Output
 
-Veja o [*Schema* do Banco de Dados](#schema-do-bando-de-dados) para compreender os campos. Você pode disponibilizar um **QR Code** para facilitar o pagamento do livro, bastando decodificar em `Base64` o valor do campo `pix_b64` que irá produzir um `PNG` contendo a informação de [**PIX**](https://www.bcb.gov.br/estabilidadefinanceira/pix) (Método de pagamento comum no Brasil).
+Veja o [*Schema* do Banco de Dados](#schema-do-bando-de-dados) para compreender os campos. Você pode disponibilizar um **QR Code** para facilitar o pagamento do livro, bastando decodificar em `Base64` o valor do campo `pix_b64` que irá produzir um `PNG` contendo a informação de [**PIX**](https://www.bcb.gov.br/estabilidadefinanceira/pix) (Método de pagamento comum no Brasil), ou pela coleta direta do código em `pix_str`.
 
-> OBS: `book_sales` é construído a partir da relação **Book-Sale**.
+> OBS: `books_sales` é construído a partir da relação **Book-Sale**.
 
 ```json
 {
-	"book_sales": [
+	"books_sales": [
 		{
 			"book_id": 3,
 			"book_price": 5000,
@@ -369,6 +369,7 @@ Veja o [*Schema* do Banco de Dados](#schema-do-bando-de-dados) para compreender 
 	],
 	"id": 6,
 	"pix_b64": "data:image/png;base64,...",
+    "pix_str": "00020101021226750014BR.GOV.BCB.PIX0...",
 	"sale_ts": "Sun, 15 Jun 2025 19:53:39 GMT",
 	"total": 15000,
 	"uuid": "352d309c1d52496589535313b09c4a82"

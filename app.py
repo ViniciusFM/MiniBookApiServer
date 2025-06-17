@@ -106,12 +106,15 @@ def new_sale():
         if not 'books_sale_data' in body:
             raise MiniBookApiException(INVALID_BODY)
         sale = Sale.new(body['books_sale_data'])
-        pix = sale.getPixB64(
+        pix = sale.getPix(
             app.config['PIX_NAME'],
             app.config['PIX_KEY']
         )
         ret = sale.toDict()
-        ret.update({'pix_b64': pix})
+        ret.update({
+            'pix_b64': pix.toBase64(),
+            'pix_str': str(pix)
+        })
         return jsonify(ret)
     except MiniBookApiException as e:
         return e.jsonify()

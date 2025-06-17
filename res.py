@@ -7,11 +7,9 @@ import uuid
 
 from exceptions import MiniBookApiException
 from io import BytesIO
+from paths import *
 from PIL import Image
 
-WD              = os.path.dirname(os.path.abspath(__file__))
-CONFIGFILE      = os.path.join(WD, 'config.json')
-IMG_RES         = os.path.join(WD, 'instance', 'images')
 _MAX_H, _MAX_W  = 1080, 1080 # max image pixel
 
 def init_img_res():

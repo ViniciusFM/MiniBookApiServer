@@ -42,15 +42,20 @@ deactivate
 ```bash
 pip install -r requirements.txt
 ```
-6) Crie um arquivo `config.json` à exemplo do arquivo `config-example.json`.
-    * Para criar um valor para o parâmetro `TOKEN` e `TOKEN_ADMIN` de `config.json` execute:
-    ```python
-    python -c "import secrets; print(secrets.token_hex(32))"
-    ```
-    * Copie o valor gerado para o arquivo de configuração.
-    * Insira as informações válidas de PIX para configurar um mecanismo de pagamento.
-        * `PIX_NAME`: Corresponde ao nome da entidade recebedora.
-        * `PIX_KEY`: Corresponde à chave da entidade recebedora. A chave tem que estar em conformidade com o que estipula o projeto [***pybrcode***](https://github.com/ViniciusFM/pybrcode?tab=readme-ov-file#how-to-use) para parâmetros de chave pix.
+6) Configure um arquivo `config.json`.
+    * **Criando com um *script* automatizado**: para isso execute o comando abaixo e siga as instruções.
+        ```bash
+        python serverman.py
+        ```
+    * **Criando manualmente**: siga o exemplo do arquivo `config-example.json`.
+        * Para criar um valor para o parâmetro `TOKEN` e `TOKEN_ADMIN` de `config.json` execute:
+        ```bash
+        python -c "import secrets; print(secrets.token_hex(32))"
+        ```
+        * Copie o valor gerado para o arquivo de configuração.
+        * Insira as informações válidas de PIX para configurar um mecanismo de pagamento.
+            * `PIX_NAME`: Corresponde ao nome da entidade recebedora.
+            * `PIX_KEY`: Corresponde à chave da entidade recebedora. A chave tem que estar em conformidade com o que estipula o projeto [***pybrcode***](https://github.com/ViniciusFM/pybrcode?tab=readme-ov-file#how-to-use) para parâmetros de chave pix.
 7) Executar a aplicação flask localmente:
 ```bash
 flask run --debug --host=0.0.0.0 --port=5000

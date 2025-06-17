@@ -1,5 +1,8 @@
 import datetime
+import pybrcode
 import uuid
+
+import pybrcode.pix
 
 from exceptions import (
     MiniBookApiException, BOOK_NOT_FOUND,
@@ -9,7 +12,6 @@ from exceptions import (
     SALE_ALREADY_CONCLUDED
 )
 from flask_sqlalchemy import SQLAlchemy
-from pybrcode.pix import generate_simple_pix
 from pybrcode.exceptions import (
     PixInvalidKeyException, PixInvalidPayloadException
 )
@@ -42,8 +44,8 @@ class BookSale(db.Model):
                         primary_key=True)
     unities = db.Column(db.Integer, nullable=False, default=1)
     
-    book = db.relationship('Book', back_populates='book_sales')
-    sale = db.relationship('Sale', back_populates='book_sales')
+    book = db.relationship('Book', back_populates='books_sales')
+    sale = db.relationship('Sale', back_populates='books_sales')
     
     def toDict(self) -> dict:
         return {
@@ -60,7 +62,7 @@ class Sale(db.Model):
     sale_ts     = db.Column(db.DateTime, default=get_timestamp)
     uuid        = db.Column(db.String(32), default=get_uuid)
     concluded   = db.Column(db.Boolean, default=False)
-    book_sales  = db.relationship('BookSale', cascade='all, delete-orphan')
+    books_sales  = db.relationship('BookSale', cascade='all, delete-orphan')
     
     @staticmethod
     def fetch(uuid:str) -> 'Sale':
@@ -73,7 +75,7 @@ class Sale(db.Model):
         sale = Sale.fetch(uuid)
         if sale.concluded:
             raise MiniBookApiException(SALE_ALREADY_CONCLUDED)
-        for bs in sale.book_sales:
+        for bs in sale.books_sales:
             bs.book.unities -= bs.unities
             if bs.book.unities < 0:
                 raise MiniBookApiException(
@@ -138,19 +140,19 @@ class Sale(db.Model):
             if unities > 0:
                 book = bs['book']
                 sale.total += unities * book.price
-                sale.book_sales.append(
+                sale.books_sales.append(
                     BookSale(book=book, unities=unities)
                 )
         db.session.add(sale)
         db.session.commit()
         return sale
-    def getPixB64(self, pix_name:str, pix_key:str) -> 'str':
+    def getPix(self, pix_name:str, pix_key:str) -> pybrcode.pix.Pix:
         try:
-            return generate_simple_pix(
+            return pybrcode.pix.generate_simple_pix(
                 fullname=pix_name, key=pix_key,
                 city="None", value=self.total/100.0,
                 description='Buying books.'
-            ).toBase64()
+            )
         except (
             PixInvalidKeyException,
             PixInvalidPayloadException
@@ -162,7 +164,7 @@ class Sale(db.Model):
             'uuid': self.uuid,
             'total': self.total,
             'sale_ts': self.sale_ts,
-            'book_sales': [bs.toDict() for bs in self.book_sales]
+            'books_sales': [bs.toDict() for bs in self.books_sales]
         }
 
 class Book(db.Model):
@@ -175,7 +177,7 @@ class Book(db.Model):
     year        = db.Column(db.Integer, nullable=False)
     unities     = db.Column(db.Integer, nullable=False)
     img_res     = db.Column(db.String(32), nullable=True)
-    book_sales  = db.relationship('BookSale')
+    books_sales  = db.relationship('BookSale')
     
     @staticmethod
     def new(title:str, author:str, price:int,
