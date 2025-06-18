@@ -47,15 +47,17 @@ CREATE TABLE sales (
  *   livros são confirmadas. Este valor não será negativo.
  * - Para pegar a imagem, utilize a rota /img/:img_res
  */
+
 CREATE TABLE books (
         id INTEGER NOT NULL, 
-        title VARCHAR(192) NOT NULL,    /* Título do livro */
-        author VARCHAR(256) NOT NULL,   /* Nome do autor do livro */
-        description TEXT,               /* Descrição do produto */
-        price INTEGER NOT NULL,         /* preço do livro */
-        year INTEGER NOT NULL,          /* ano de lançamento do livro */
-        unities INTEGER NOT NULL,       /* unidades disponíveis no acervo */
-        img_res VARCHAR(32),            /* ref. da imagem no servidor */
+        title VARCHAR(256) NOT NULL,        /* Título do livro */
+        author VARCHAR(256) NOT NULL,       /* Nome do autor do livro */
+        publisher VARCHAR(256) NOT NULL,    /* Nome da editora que lançou o livro */
+        description TEXT,                   /* Descrição do produto */
+        price INTEGER NOT NULL,             /* preço do livro */
+        year INTEGER NOT NULL,              /* ano de lançamento do livro */
+        unities INTEGER NOT NULL,           /* unidades disponíveis no acervo */
+        img_res VARCHAR(32),                /* ref. da imagem no servidor */
         PRIMARY KEY (id)
 );
 /* 
@@ -245,6 +247,7 @@ Veja o [*Schema* do Banco de Dados](#schema-do-bando-de-dados) para compreender 
 		"id": 1,
 		"img_res": "f1a000ee80da4ed2a050df83d15c1758",
 		"price": 5000,
+        "publisher": "Editora Hello",
 		"title": "O Mundo das Compras Online: A Saga",
 		"unities": 5,
 		"year": 1985
@@ -255,6 +258,7 @@ Veja o [*Schema* do Banco de Dados](#schema-do-bando-de-dados) para compreender 
 		"id": 2,
 		"img_res": "fa273196396c4df8b6fd4476ab5323e9",
 		"price": 3200,
+        "publisher": "Editora Hello",
 		"title": "Uma Aventura e Tanto",
 		"unities": 1,
 		"year": 2003
@@ -411,6 +415,7 @@ Exceptions:
 {
 	"title": "Test 3",
 	"author": "Test Author 3",
+    "publisher": "Editora Hello",
 	"price": 5000,
 	"unities": 10,
 	"year": 2025,
@@ -430,6 +435,7 @@ Exceptions:
 	"id": 3,
 	"img_res": "b92535fca827441d97d879712f3197ed",
 	"price": 5000,
+    "publisher": "Editora Hello",
 	"title": "Test 3",
 	"unities": 10,
 	"year": 2025
