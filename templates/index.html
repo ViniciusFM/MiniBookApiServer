@@ -19,7 +19,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <!-- CSS -->
     <link rel="stylesheet" href="/static/css/main.css">
     <link rel="stylesheet" href="/static/css/book_cards.css">
@@ -41,7 +41,7 @@
         {% if book_list != [] %}
         <div class="book-list">
             {% for book in book_list %}
-            <div class="book-card">
+            <div id="book-card_{{book.id}}" onclick="expandBookCard({{book.id}})" class="book-card">
                 <img src="{{request.url_root}}/img/{{book.img_res}}" alt="Capa do Livro">
                 <div class="book-info">
                     <div class="book-title">{{book.title}}</div>
@@ -57,5 +57,6 @@
         <div id="div-no-books"><p>Sorry, no books available.</p><span>>.<</span></div>
         {% endif %}
     </section>
+    <script src="/static/js/book_card.js"></script>
 </body>
 </html>

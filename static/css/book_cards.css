@@ -1,6 +1,7 @@
 .book-list {
     background-color: #4F4557;
-    font-family: Arial, sans-serif;
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
     display: flex;
     justify-content: center;
     padding: 1rem;
@@ -63,6 +64,18 @@
 .book-year {
     font-size: 0.9rem;
     color: #b6b6b6;
+}
+
+@media (min-width: 500px) {
+    .book-card {
+        cursor: pointer;
+    }
+    .book-card[expanded="true"] .book-desc {
+        -webkit-line-clamp: none;
+    }
+    .book-card[expanded="false"] .book-desc {
+        -webkit-line-clamp: 3;
+    }
 }
 
 @media (max-width: 500px) {
