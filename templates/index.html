@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta TAGS -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Mini Book API">
+    <meta property="og:description" content="MiniBookApiServer is a backend system designed to enable book sales. It exposes an HTTP interface with several endpoints that allow users to browse the catalog of available books, start a sale by adding books to a purchase, and confirm or cancel the sale.">
+    <meta property="og:image" content="{{request.url_root}}/static/img/minibookapi_logo.svg">
+    <meta property="og:url" content="{{request.url_root}}">
+    <meta property="og:type" content="website">
+    <meta property="og:updated_time" content="{{timenow}}" />
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Mini Book API">
+    <meta name="twitter:description" content="MiniBookApiServer is a backend system designed to enable book sales. It exposes an HTTP interface with several endpoints that allow users to browse the catalog of available books, start a sale by adding books to a purchase, and confirm or cancel the sale.">
+    <meta name="twitter:image" content="{{request.url_root}}/static/img/minibookapi_logo.svg">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&display=swap" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="/static/css/book_cards.css">
+    <link rel="icon" type="image/svg+xml" href="/static/img/minibookapi_logo.svg">
+    <!-- common header -->
+    <title>Mini Book API</title>
+</head>
+<body>
+    <head>
+        <h1>Mini Book API Server</h1>
+        <div class="circle-bg">
+            <img src="/static/img/minibookapi_logo.svg" alt="Mini Book API's Logo">
+        </div>
+        <p><strong>MiniBookApiServer</strong> is a backend system designed to enable book sales. It exposes an HTTP interface with several endpoints that allow users to browse the catalog of available books, start a sale by adding books to a purchase, and confirm or cancel the sale.</p>
+        <p>This code contains parts of the <a href="https://github.com/ViniciusFM/ChatApp-Server">ChatAppServer</a> repository. Both this and that project are licensed under the AGPLv3. See MiniAppBookServer's <a href="https://github.com/ViniciusFM/MiniBookApiServer" target="_blank">repository</a> for more information.</p>
+    </head>
+    <section>
+        <h1 class="sec-h1">Books</h1>
+        {% if book_list != [] %}
+        <div class="book-list">
+            {% for book in book_list %}
+            <div class="book-card">
+                <img src="{{request.url_root}}/img/{{book.img_res}}" alt="Capa do Livro">
+                <div class="book-info">
+                    <div class="book-title">{{book.title}}</div>
+                    <div class="book-author">{{book.author}}</div>
+                    <div class="book-price">R$ {{str(book.price)[:-2]}},{{str(book.price)[-2:]}}</div>
+                    <div class="book-desc">{{book.description if book.description != None else ""}}</div>
+                    <div class="book-year">Published in {{book.year}}</div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div id="div-no-books"><p>Sorry, no books available.</p><span>>.<</span></div>
+        {% endif %}
+    </section>
+</body>
+</html>

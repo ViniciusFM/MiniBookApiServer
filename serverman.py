@@ -14,8 +14,29 @@ def normalize(texto:str):
         c for c in unicodedata.normalize('NFD', texto)
         if unicodedata.category(c) != 'Mn'
     )
+    
+def dir_path(string):
+    if os.path.isdir(string):
+        return string
+    else:
+        raise NotADirectoryError(f"The path \"{string}\" is not a valid directory.")
 
 # --- input handling
+
+def load_data_from_dir(dirpath:str, force:bool=False):
+    if os.path.exists(DIR_RES):
+        if force:
+            shutil.rmtree(DIR_RES)
+            print('The previous data was removed!')
+        else:
+            print('The data already exists. '
+                'Erase it before or use --force flag '
+                'to remove it without any precautions.\n'
+                'If you force this, you\'ll the whole data permanentely.')
+            exit(0)
+    shutil.copytree(dirpath, DIR_RES)
+    print('Data was loaded successfully.')
+    exit(0)
 
 def erase_data(force:bool=False):
     if not os.path.exists(DIR_RES):
@@ -72,7 +93,15 @@ def handle_input():
         action='store_true',
         help='Force an operation without prompting and/or protection.'
     )
+    parser.add_argument(
+        '-l', '--load-dir', dest='path',
+        type=dir_path,
+        default=None,
+        help='Loads the images and database from PATH.'
+    )
     args = parser.parse_args()
+    if args.path != None:
+        load_data_from_dir(args.path, args.force)
     if args.erase_data:
         erase_data(args.force)
     else:
@@ -84,3 +113,5 @@ if __name__ == '__main__':
     except KeyboardInterrupt:
         print("\nBye bye :)")
         exit(0)
+    except NotADirectoryError as e:
+        print(str(e))

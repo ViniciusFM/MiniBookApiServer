@@ -9,4 +9,4 @@ instance/
 config.json
 
 # custom ignore
-*-ignore.*
+*-ignore*

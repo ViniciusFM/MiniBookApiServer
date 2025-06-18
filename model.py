@@ -170,8 +170,9 @@ class Sale(db.Model):
 class Book(db.Model):
     __tablename__ = 'books'
     id          = db.Column(db.Integer, primary_key=True)
-    title       = db.Column(db.String(192), nullable=False)
+    title       = db.Column(db.String(256), nullable=False)
     author      = db.Column(db.String(256), nullable=False)
+    publisher   = db.Column(db.String(256), nullable=False)
     description = db.Column(db.Text, nullable=True)
     price       = db.Column(db.Integer, nullable=False)
     year        = db.Column(db.Integer, nullable=False)
@@ -180,12 +181,13 @@ class Book(db.Model):
     books_sales  = db.relationship('BookSale')
     
     @staticmethod
-    def new(title:str, author:str, price:int,
+    def new(title:str, author:str, publisher:str, price:int,
             unities: int, year:int, description:str=None,
             img_b64:str=None) -> 'Book':
         book = Book()
         book.title = title
         book.author = author
+        book.publisher = publisher
         book.price = price
         book.year = year
         book.unities = unities
@@ -199,6 +201,7 @@ class Book(db.Model):
             'id'          : self.id,
             'title'       : self.title,
             'author'      : self.author,
+            'publisher'   : self.publisher,
             'description' : self.description,
             'price'       : self.price,
             'year'        : self.year,

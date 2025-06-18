@@ -1,0 +1,91 @@
+.book-list {
+    background-color: #4F4557;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+    border-radius: 5px;
+    flex-direction: column;
+}
+
+.book-card {
+    display: flex;
+    background-color: #6D5D6E;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    width: 100%;
+    margin: 0.5em 0;
+}
+
+.book-card img {
+    width: 150px;
+    height: auto;
+    object-fit: cover;
+}
+
+.book-info {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+}
+
+.book-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #f8dea3;
+}
+
+.book-author {
+    font-size: 1rem;
+    color: #faeac5;
+}
+
+.book-desc {
+    font-size: 1rem;
+    color: #F4EEE0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.4;
+}
+
+.book-price {
+    font-size: 1.1rem;
+    color: #D27685;
+    font-weight: bold;
+}
+
+.book-year {
+    font-size: 0.9rem;
+    color: #b6b6b6;
+}
+
+@media (max-width: 500px) {
+    .book-title {
+        font-size: 0.9rem;
+    }
+    .book-author {
+        font-size: 0.7rem;
+    }
+    .book-desc {
+        display: none;
+    }
+    .book-year {
+        display: none;
+    }
+}
+
+@media (max-width: 400px) {
+    .book-card * {
+        display: none;
+    }
+    .book-card img {
+        display: block;
+        width: 100%;
+    }
+}

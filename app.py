@@ -1,12 +1,13 @@
 import exceptions as excp
 import json
+import time
 
 from exceptions import (
     MiniBookApiException, INVALID_BODY
 )
 from flask import (
     Flask, request, jsonify, request,
-    send_file, Response
+    send_file, Response, render_template
 )
 from functools import wraps
 from model import (
@@ -47,6 +48,19 @@ def auth_required(admin_only:bool=False):
         return inject
     return decorator
 
+# --- PAGE PROVIDING
+
+@app.route('/', methods=['GET'])
+def index():
+    books = Book.query.all()
+    book_list = []
+    for b in books:
+        book_list.append(b.toDict())
+    return render_template('index.html', 
+                           timenow=int(time.time()), 
+                           book_list=sorted(book_list, key=lambda b: b['title']),
+                           str=str)
+
 # --- GET ROUTES
 
 @app.route('/img/<string:img_res>', methods=['GET'])
@@ -81,11 +95,12 @@ def new_book():
     try:
         body = request.get_json()
         if(len({'title', 'author', 'price', 
-            'year', 'unities'} - set(body)) > 0):
+            'year', 'unities', 'publisher'} - set(body)) > 0):
             raise MiniBookApiException(INVALID_BODY)
         book = Book.new(
             body['title'],
             body['author'],
+            body['publisher'],
             body['price'],
             body['unities'],
             body['year'],
