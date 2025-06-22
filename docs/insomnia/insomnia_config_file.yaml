@@ -241,6 +241,6 @@ environments:
         sortKey: 1750023948765
       data:
         app_url: https://minibookapi.viniciusfm.pro.br
-        api_token: 1fedd74dbfe470d83b3d38989dfb50402980a84ed42c19f6fde010fe52b5b07e
+        api_token: "null"
         api_token_admin: "null"
       color: "#00ff11"
