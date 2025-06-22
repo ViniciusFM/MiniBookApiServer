@@ -1,6 +1,7 @@
 import datetime
 import pybrcode
 import uuid
+import sys
 
 import pybrcode.pix
 
@@ -34,7 +35,10 @@ def get_uuid() -> str:
     return uuid.uuid4().hex
 
 def get_timestamp() -> datetime:
-    return datetime.datetime.now(datetime.UTC)
+    if sys.version_info > (3, 11):
+        return datetime.datetime.now(datetime.UTC)
+    else:
+        return datetime.datetime.now(datetime.timezone.utc)
 
 class BookSale(db.Model):
     __tablename__ = 'books_sales'
@@ -94,9 +98,14 @@ class Sale(db.Model):
             raise MiniBookApiException(SALE_CAN_NOT_BE_CANCELED)
     @staticmethod
     def refresh():
-        time_limit = \
-            datetime.datetime.now(datetime.UTC) - \
-            datetime.timedelta(minutes=30)
+        if sys.version_info > (3, 11):
+            time_limit = \
+                datetime.datetime.now(datetime.timezone.utc) - \
+                datetime.timedelta(minutes=30)
+        else:
+            time_limit = \
+                datetime.datetime.now(datetime.UTC) - \
+                datetime.timedelta(minutes=30)
         sales = Sale.query.filter(
             and_(
                 Sale.sale_ts < time_limit,
