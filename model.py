@@ -35,10 +35,10 @@ def get_uuid() -> str:
     return uuid.uuid4().hex
 
 def get_timestamp() -> datetime:
-    if sys.version_info > (3, 11):
-        return datetime.datetime.now(datetime.UTC)
-    else:
+    if sys.version_info < (3, 11):
         return datetime.datetime.now(datetime.timezone.utc)
+    else:
+        return datetime.datetime.now(datetime.UTC)
 
 class BookSale(db.Model):
     __tablename__ = 'books_sales'
@@ -98,7 +98,7 @@ class Sale(db.Model):
             raise MiniBookApiException(SALE_CAN_NOT_BE_CANCELED)
     @staticmethod
     def refresh():
-        if sys.version_info > (3, 11):
+        if sys.version_info < (3, 11):
             time_limit = \
                 datetime.datetime.now(datetime.timezone.utc) - \
                 datetime.timedelta(minutes=30)
