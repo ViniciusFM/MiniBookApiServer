@@ -3,7 +3,7 @@ name: MiniBookAPI
 meta:
   id: wrk_4b77fb820c63475687dda6ea2fcd91ab
   created: 1749924640061
-  modified: 1750030550067
+  modified: 1750601633576
   description: ""
 collection:
   - url: "{{ _.app_url }}/book/new"
@@ -11,7 +11,7 @@ collection:
     meta:
       id: req_3dac1e2af67248838e8bf4b9c2a9f841
       created: 1749924676564
-      modified: 1750210671823
+      modified: 1750601633562
       isPrivate: false
       description: ""
       sortKey: -1750005931107.375
@@ -50,7 +50,7 @@ collection:
     meta:
       id: req_56dc43a0e03d4481a99540cf16cfb10b
       created: 1749925727678
-      modified: 1750210671823
+      modified: 1750601633574
       isPrivate: false
       description: ""
       sortKey: -1749929158069
@@ -74,7 +74,7 @@ collection:
     meta:
       id: req_d395bd23864e48ea9f5ef3f29d500df9
       created: 1749925827144
-      modified: 1750030550064
+      modified: 1750601633575
       isPrivate: false
       description: ""
       sortKey: -1749925827144
@@ -97,7 +97,7 @@ collection:
     meta:
       id: req_05968130e23a4d44940f1125516dfcc1
       created: 1749932488994
-      modified: 1750030550052
+      modified: 1750601633555
       isPrivate: false
       description: ""
       sortKey: -1749995401687.75
@@ -131,7 +131,7 @@ collection:
     meta:
       id: req_338e319c6f684e37b9a9d21c0dc41ed1
       created: 1750016196703
-      modified: 1750186377701
+      modified: 1750601633555
       isPrivate: false
       description: ""
       sortKey: -1750016460627
@@ -163,7 +163,7 @@ collection:
     meta:
       id: req_efe7931efcd94ee3a12a08f6141b0098
       created: 1750016460527
-      modified: 1750210671823
+      modified: 1750601633575
       isPrivate: false
       description: ""
       sortKey: -1750016460527
@@ -195,7 +195,7 @@ collection:
     meta:
       id: req_22115fd40c6540779a5078c0c7de6c3e
       created: 1750023550937
-      modified: 1750030550053
+      modified: 1750601633555
       isPrivate: false
       description: ""
       sortKey: -1749925777411
@@ -218,14 +218,14 @@ cookieJar:
   name: Default Jar
   meta:
     id: jar_c086891d18cfa5f2b516b1e03942ec6afb8df2d6
-    created: 1750030550303
-    modified: 1750030550303
+    created: 1750601633615
+    modified: 1750601633615
 environments:
   name: Localhost
   meta:
     id: env_c086891d18cfa5f2b516b1e03942ec6afb8df2d6
     created: 1749924640065
-    modified: 1750186377701
+    modified: 1750601633553
     isPrivate: false
   data:
     api_token: 4ee82c61a8844f9b24ad01c871f3172df9037568f0f373e1e0d8ccfb42aeb6cf
@@ -236,11 +236,11 @@ environments:
       meta:
         id: env_ef67422354fd4a0a957f9ea49422d2ca
         created: 1750023948765
-        modified: 1750030550051
+        modified: 1750601709815
         isPrivate: false
         sortKey: 1750023948765
       data:
-        api_token: aaaa
-        api_token_admin: bbbb
-        app_url: https://viniciusmacielf2.pythonanywhere.com
+        app_url: https://minibookapi.viniciusfm.pro.br
+        api_token: 1fedd74dbfe470d83b3d38989dfb50402980a84ed42c19f6fde010fe52b5b07e
+        api_token_admin: "null"
       color: "#00ff11"

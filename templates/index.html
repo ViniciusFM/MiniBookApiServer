@@ -42,7 +42,11 @@
         <div class="book-list">
             {% for book in book_list %}
             <div id="book-card_{{book.id}}" onclick="expandBookCard({{book.id}})" class="book-card">
-                <img src="{{request.url_root}}/img/{{book.img_res}}" alt="Capa do Livro">
+                {% if book.img_res == None %}
+                <img src="/static/img/book_no_cover.svg" alt="No book's cover available.">
+                {% else %}
+                <img src="{{request.url_root}}/img/{{book.img_res}}" alt="Book's cover">
+                {% endif %}
                 <div class="book-info">
                     <div class="book-title">{{book.title}}</div>
                     <div class="book-author">{{book.author}}</div>
